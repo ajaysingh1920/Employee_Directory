@@ -15,15 +15,15 @@ var jobtitleCollection = ["SharePoint Practice Head", ".Net Development Lead", "
 
 document.onclick = function (event) {
     var target = event.target || event.srcElement;
-    if (contains(deptCollection, target.innerHTML)) {
+    if (contains(deptCollection, target)) {
         operation("department", target);
         filter(true);
     }
-    else if (contains(officeCollection, target.innerHTML)) {
+    else if (contains(officeCollection, target)) {
         operation("office", target);
         filter(true);
     }
-    else if (contains(jobtitleCollection, target.innerHTML)) {
+    else if (contains(jobtitleCollection, target)) {
         operation("jobtitle", target);
         filter(true);
     }
@@ -39,7 +39,7 @@ function filter(pass) {
     }
 
     var temp = new Array();
-    var deptarray = filterMap.get("department"); 
+    var deptarray = filterMap.get("department");
     var offarray = filterMap.get("office");
     var jtarray = filterMap.get("jobtitle");
 
@@ -81,7 +81,7 @@ function filter(pass) {
     }
 
     t = new Array();
-    if (selectedPrefix != undefined && pass==true) {
+    if (selectedPrefix != undefined && pass == true) {
         for (let i = 0; i < temp.length; i++) {
             for (let j = 0; j < parent.length; j++) {
                 if (temp[i] == parent[j]) t.push(temp[i]);
@@ -109,9 +109,9 @@ function filter(pass) {
     }
 }
 
-function contains(collection, val) {
+function contains(collection, tar) {
     for (let i = 0; i < collection.length; i++) {
-        if (collection[i] == val) {
+        if (collection[i] + "P" == tar.getAttribute('id')) {
             return true;
         }
     }
@@ -164,9 +164,9 @@ function renderJS() {
         "department": "IT",
         "phonenumber": "9079027168"
     }
-    department=inner1.department;
-    office=inner1.office;
-    jobtitle=inner1.jobtitle;
+    department = inner1.department;
+    office = inner1.office;
+    jobtitle = inner1.jobtitle;
     employee.push(inner1);
     countSet(true);
     let inner2 = {
@@ -180,12 +180,12 @@ function renderJS() {
         "department": "Sales",
         "phonenumber": "5079027168"
     }
-    department=inner2.department;
-    office=inner2.office;
-    jobtitle=inner2.jobtitle;
+    department = inner2.department;
+    office = inner2.office;
+    jobtitle = inner2.jobtitle;
     employee.push(inner2);
     countSet(true);
-    let inner3={
+    let inner3 = {
         "id": ++id,
         "fname": "dfsfsd",
         "lname": "fassaf",
@@ -196,12 +196,12 @@ function renderJS() {
         "department": "MD",
         "phonenumber": "6073027168"
     }
-    department=inner3.department;
-    office=inner1.office;
-    jobtitle=inner1.jobtitle;
+    department = inner3.department;
+    office = inner1.office;
+    jobtitle = inner1.jobtitle;
     employee.push(inner3);
     countSet(true);
-    let inner4={
+    let inner4 = {
         "id": ++id,
         "fname": "dfsfsd",
         "lname": "fassaf",
@@ -212,12 +212,12 @@ function renderJS() {
         "department": "IT",
         "phonenumber": "7073027168"
     }
-    department=inner4.department;
-    office=inner4.office;
-    jobtitle=inner4.jobtitle;
+    department = inner4.department;
+    office = inner4.office;
+    jobtitle = inner4.jobtitle;
     employee.push(inner4);
     countSet(true);
-    let inner5={
+    let inner5 = {
         "id": ++id,
         "fname": "dfsfsd",
         "lname": "fassaf",
@@ -228,9 +228,9 @@ function renderJS() {
         "department": "Sales",
         "phonenumber": "8073027168"
     }
-    department=inner5.department;
-    office=inner5.office;
-    jobtitle=inner5.jobtitle;
+    department = inner5.department;
+    office = inner5.office;
+    jobtitle = inner5.jobtitle;
     employee.push(inner5);
     countSet(true);
     show(1);
@@ -247,12 +247,13 @@ function showDepartment() {
         // const head=departmentDiv.getElementsByTagName('h3');
         const parent = document.createElement('p');
         parent.style.display = 'inline';
+        parent.setAttribute("id", deptCollection[i] + "P");
         const textnode = document.createTextNode(deptCollection[i]);
         parent.appendChild(textnode);
 
         const span = document.createElement('span');
         const spantextnode = document.createTextNode('(0)');
-        span.setAttribute("id",deptCollection[i]);
+        span.setAttribute("id", deptCollection[i]);
         span.style.display = 'inline';
         span.appendChild(spantextnode);
 
@@ -272,13 +273,14 @@ function showOffice() {
         // const head=departmentDiv.getElementsByTagName('h3');
         const parent = document.createElement('p');
         parent.style.display = 'inline';
+        parent.setAttribute("id", officeCollection[i] + "P");
         const textnode = document.createTextNode(officeCollection[i]);
         parent.appendChild(textnode);
 
         const span = document.createElement('span');
         const spantextnode = document.createTextNode('(0)');
         span.style.display = 'inline';
-        span.setAttribute("id",officeCollection[i]);
+        span.setAttribute("id", officeCollection[i]);
         span.appendChild(spantextnode);
 
         const br = document.createElement('br');
@@ -295,13 +297,14 @@ function showJobTitle() {
         // const head=departmentDiv.getElementsByTagName('h3');
         const parent = document.createElement('p');
         parent.style.display = 'inline';
+        parent.setAttribute("id", jobtitleCollection[i] + "P");
         const textnode = document.createTextNode(jobtitleCollection[i]);
         parent.appendChild(textnode);
 
         const span = document.createElement('span');
         const spantextnode = document.createTextNode('(0)');
         span.style.display = 'inline';
-        span.setAttribute("id",jobtitleCollection[i]);
+        span.setAttribute("id", jobtitleCollection[i]);
         span.appendChild(spantextnode);
 
         const br = document.createElement('br');
@@ -342,9 +345,9 @@ function show(id) {
     img.src = "person_icon.png";
     const name = document.createElement('h3');
     const nametextnode = document.createTextNode(nametext);
-    name.style.cursor='pointer';
+    name.style.cursor = 'pointer';
     name.setAttribute("id", id);
-    name.setAttribute("onclick","popup(id)");
+    name.setAttribute("onclick", "popup(id)");
     name.style.paddingLeft = "7px";
     name.style.color = "#666666";
     name.appendChild(nametextnode);
@@ -516,26 +519,71 @@ function onFormSubmit() {
     }
 }
 
-function countSet(flag){
-    for(let i=0;i<deptCollection.length;i++){
-        if(deptCollection[i]==department){
-            let number=document.getElementById(deptCollection[i]);
-            if(flag) number.innerHTML="("+(number.innerHTML[1]-'0'+1)+")";
-            else number.innerHTML="("+(number.innerHTML[1]-'0'-1)+")";
+function countSet(flag) {
+    let chk = true;
+    for (let i = 0; i < deptCollection.length; i++) {
+        if (deptCollection[i] == department) {
+            chk = false;
+            let number = document.getElementById(deptCollection[i]);
+            if (flag) number.innerHTML = "(" + (number.innerHTML[1] - '0' + 1) + ")";
+            else number.innerHTML = "(" + (number.innerHTML[1] - '0' - 1) + ")";
         }
     }
-    for(let i=0;i<officeCollection.length;i++){
-        if(officeCollection[i]==office){
-            let number=document.getElementById(officeCollection[i]);
-            if(flag) number.innerHTML="("+(number.innerHTML[1]-'0'+1)+")";
-            else number.innerHTML="("+(number.innerHTML[1]-'0'-1)+")";
+    if (chk == true) {
+        var departmentDiv = document.querySelector('.department');
+        const parent = document.createElement('p');
+        parent.style.display = 'inline';
+        parent.setAttribute("id", department + "P");
+        const textnode = document.createTextNode(department);
+        parent.appendChild(textnode);
+
+        const span = document.createElement('span');
+        const spantextnode = document.createTextNode('(1)');
+        span.setAttribute("id", department);
+        span.style.display = 'inline';
+        span.appendChild(spantextnode);
+
+        const spann = document.createElement('span');
+
+        const br = document.createElement('br');
+        departmentDiv.appendChild(parent);
+        departmentDiv.appendChild(span);
+        departmentDiv.appendChild(br);
+    }
+    chk = true;
+    for (let i = 0; i < officeCollection.length; i++) {
+        if (officeCollection[i] == office) {
+            chk = false;
+            let number = document.getElementById(officeCollection[i]);
+            if (flag) number.innerHTML = "(" + (number.innerHTML[1] - '0' + 1) + ")";
+            else number.innerHTML = "(" + (number.innerHTML[1] - '0' - 1) + ")";
         }
     }
-    for(let i=0;i<jobtitleCollection.length;i++){
-        if(jobtitleCollection[i]==jobtitle){
-            let number=document.getElementById(jobtitleCollection[i]);
-            if(flag) number.innerHTML="("+(number.innerHTML[1]-'0'+1)+")";
-            else number.innerHTML="("+(number.innerHTML[1]-'0'-1)+")";
+    if (chk == true) {
+        var officeDiv = document.querySelector('.offices');
+        const parent = document.createElement('p');
+        parent.style.display = 'inline';
+        parent.setAttribute("id", office + "P");
+        const textnode = document.createTextNode(office);
+        parent.appendChild(textnode);
+
+        const span = document.createElement('span');
+        const spantextnode = document.createTextNode('(1)');
+        span.style.display = 'inline';
+        span.setAttribute("id", office);
+        span.appendChild(spantextnode);
+
+        const br = document.createElement('br');
+        officeDiv.appendChild(parent);
+        officeDiv.appendChild(span);
+        officeDiv.appendChild(br);
+    }
+    for (let i = 0; i < jobtitleCollection.length; i++) {
+        if (jobtitleCollection[i] == jobtitle) {
+            chk = false;
+            let number = document.getElementById(jobtitleCollection[i]);
+            if (flag) number.innerHTML = "(" + (number.innerHTML[1] - '0' + 1) + ")";
+            else number.innerHTML = "(" + (number.innerHTML[1] - '0' - 1) + ")";
         }
     }
 }
@@ -645,158 +693,158 @@ function change() {
 }
 
 let opid;
-function popup(id){
+function popup(id) {
     document.querySelector('.popup').style.display = 'flex';
-    let ftextarea=document.getElementById('namefirst');
-    ftextarea.style.display='block';
-    document.getElementById('namefirsth').value='';
-    document.getElementById('namefirsth').style.display='none';
+    let ftextarea = document.getElementById('namefirst');
+    ftextarea.style.display = 'block';
+    document.getElementById('namefirsth').value = '';
+    document.getElementById('namefirsth').style.display = 'none';
 
-    let ltextarea=document.getElementById('namelast');
-    ltextarea.style.display='block';
-    document.getElementById('namelasth').value='';
-    document.getElementById('namelasth').style.display='none';
+    let ltextarea = document.getElementById('namelast');
+    ltextarea.style.display = 'block';
+    document.getElementById('namelasth').value = '';
+    document.getElementById('namelasth').style.display = 'none';
 
-    let mtextarea=document.getElementById('maill');
-    mtextarea.style.display='block';
-    document.getElementById('maillh').value='';
-    document.getElementById('maillh').style.display='none';
+    let mtextarea = document.getElementById('maill');
+    mtextarea.style.display = 'block';
+    document.getElementById('maillh').value = '';
+    document.getElementById('maillh').style.display = 'none';
 
-    let jttextarea=document.getElementById('jobtitlel');
-    jttextarea.style.display='block';
-    document.getElementById('jobtitlelh').value='';
-    document.getElementById('jobtitlelh').style.display='none';
+    let jttextarea = document.getElementById('jobtitlel');
+    jttextarea.style.display = 'block';
+    document.getElementById('jobtitlelh').value = '';
+    document.getElementById('jobtitlelh').style.display = 'none';
 
-    let otextarea=document.getElementById('officel');
-    otextarea.style.display='block';
-    document.getElementById('officelh').value='';
-    document.getElementById('officelh').style.display='none';
+    let otextarea = document.getElementById('officel');
+    otextarea.style.display = 'block';
+    document.getElementById('officelh').value = '';
+    document.getElementById('officelh').style.display = 'none';
 
-    let dtextarea=document.getElementById('departmentl');
-    dtextarea.style.display='block';
-    document.getElementById('departmentlh').value='';
-    document.getElementById('departmentlh').style.display='none';
+    let dtextarea = document.getElementById('departmentl');
+    dtextarea.style.display = 'block';
+    document.getElementById('departmentlh').value = '';
+    document.getElementById('departmentlh').style.display = 'none';
 
 
-    let ptextarea=document.getElementById('phonenumberl');
-    ptextarea.style.display='block';
-    document.getElementById('phonenumberlh').value='';
-    document.getElementById('phonenumberlh').style.display='none';
+    let ptextarea = document.getElementById('phonenumberl');
+    ptextarea.style.display = 'block';
+    document.getElementById('phonenumberlh').value = '';
+    document.getElementById('phonenumberlh').style.display = 'none';
 
-    let fname,lname,email,jobtitle,office,department,phonenumber;
-    for(let i=0;i<employee.length;i++) if(employee[i].id==id) {fname=employee[i].fname;lname=employee[i].lname;email=employee[i].mail;jobtitle=employee[i].jobtitle;office=employee[i].office;department=employee[i].department;phonenumber=employee[i].phonenumber;}
-    ftextarea.innerHTML=fname;
-    ltextarea.innerHTML=lname;
-    mtextarea.innerHTML=email;
-    jttextarea.innerHTML=jobtitle;
-    otextarea.innerHTML=office;
-    dtextarea.innerHTML=department;
-    ptextarea.innerHTML=phonenumber;
-    opid=id;
+    let fname, lname, email, jobtitle, office, department, phonenumber;
+    for (let i = 0; i < employee.length; i++) if (employee[i].id == id) { fname = employee[i].fname; lname = employee[i].lname; email = employee[i].mail; jobtitle = employee[i].jobtitle; office = employee[i].office; department = employee[i].department; phonenumber = employee[i].phonenumber; }
+    ftextarea.innerHTML = fname;
+    ltextarea.innerHTML = lname;
+    mtextarea.innerHTML = email;
+    jttextarea.innerHTML = jobtitle;
+    otextarea.innerHTML = office;
+    dtextarea.innerHTML = department;
+    ptextarea.innerHTML = phonenumber;
+    opid = id;
 }
-function xclose(){
+function xclose() {
     document.querySelector('.popup').style.display = 'none';
 }
 
-function edit(first,second){
+function edit(first, second) {
     // alert("running");
-    document.querySelector(first).style.display='none'
-    document.querySelector(second).style.display='inline';
+    document.querySelector(first).style.display = 'none'
+    document.querySelector(second).style.display = 'inline';
 }
-function remove(){
-    let idx=-1;
-    for(let i=0;i<employee.length;i++){
-        if(opid==employee[i].id){ idx=i;department=employee[i].department;office=employee[i].office;jobtitle=employee[i].jobtitle;}
+function remove() {
+    let idx = -1;
+    for (let i = 0; i < employee.length; i++) {
+        if (opid == employee[i].id) { idx = i; department = employee[i].department; office = employee[i].office; jobtitle = employee[i].jobtitle; }
     }
     xclose();
     countSet(false);
-    employee.splice(idx,1);
+    employee.splice(idx, 1);
     filter();
 }
 
-function updatea(){
-    let fname,lname,mail,phonenumber;
-    let dname=document.getElementById('departmentl').innerHTML;
-    let dnameval1=document.getElementById(dname).innerHTML[1]-'0';
-    document.getElementById(dname).innerHTML="("+(dnameval1-1)+")";
-    let oname=document.getElementById('officel').innerHTML;
-    let onameval1=document.getElementById(oname).innerHTML[1]-'0';
-    document.getElementById(oname).innerHTML="("+(onameval1-1)+")";
-    let jname=document.getElementById('jobtitlel').innerHTML;
-    let jnameval1=document.getElementById(jname).innerHTML[1]-'0';
-    document.getElementById(jname).innerHTML="("+(jnameval1-1)+")";
+function updatea() {
+    let fname, lname, mail, phonenumber;
+    let dname = document.getElementById('departmentl').innerHTML;
+    let dnameval1 = document.getElementById(dname).innerHTML[1] - '0';
+    document.getElementById(dname).innerHTML = "(" + (dnameval1 - 1) + ")";
+    let oname = document.getElementById('officel').innerHTML;
+    let onameval1 = document.getElementById(oname).innerHTML[1] - '0';
+    document.getElementById(oname).innerHTML = "(" + (onameval1 - 1) + ")";
+    let jname = document.getElementById('jobtitlel').innerHTML;
+    let jnameval1 = document.getElementById(jname).innerHTML[1] - '0';
+    document.getElementById(jname).innerHTML = "(" + (jnameval1 - 1) + ")";
 
 
-    if(document.getElementById('namefirsth').value==''){
-        fname=document.getElementById('namefirst').innerHTML;
+    if (document.getElementById('namefirsth').value == '') {
+        fname = document.getElementById('namefirst').innerHTML;
     }
-    else{
-        fname=document.getElementById('namefirsth').value;
-    }   
-
-    if(document.getElementById('namelasth').value==''){
-        lname=document.getElementById('namelast').innerHTML;
-    }
-    else{
-        lname=document.getElementById('namelasth').value;
+    else {
+        fname = document.getElementById('namefirsth').value;
     }
 
-     if(document.getElementById('maill').value==''){
-        mail=document.getElementById('maillh').innerHTML;
-     }
-     else{
-        mail=document.getElementById('maillh').value;
-     }
+    if (document.getElementById('namelasth').value == '') {
+        lname = document.getElementById('namelast').innerHTML;
+    }
+    else {
+        lname = document.getElementById('namelasth').value;
+    }
 
-     if(document.getElementById('jobtitlelh').value==''){
-         jobtitle=document.getElementById('jobtitlel').innerHTML;
-     }
-     else{
-         jobtitle=document.getElementById('jobtitlelh').value;
-     }
+    if (document.getElementById('maill').value == '') {
+        mail = document.getElementById('maillh').innerHTML;
+    }
+    else {
+        mail = document.getElementById('maillh').value;
+    }
 
-     if(document.getElementById('officelh').value==''){
-         office=document.getElementById('officel').innerHTML;
-     }
-     else{
-         office=document.getElementById('officelh').value;
-     }
+    if (document.getElementById('jobtitlelh').value == '') {
+        jobtitle = document.getElementById('jobtitlel').innerHTML;
+    }
+    else {
+        jobtitle = document.getElementById('jobtitlelh').value;
+    }
 
-     if(document.getElementById('departmentlh').value==''){
-         department=document.getElementById('departmentl').innerHTML;
-     }
-     else{
-         department=document.getElementById('departmentlh').value;
-     }
+    if (document.getElementById('officelh').value == '') {
+        office = document.getElementById('officel').innerHTML;
+    }
+    else {
+        office = document.getElementById('officelh').value;
+    }
 
-     if(document.getElementById('phonenumberlh').value==''){
-         phonenumber=document.getElementById('phonenumberl').innerHTML;
-     }
-     else{
-         phonenumber=document.getElementById('phonenumberlh').value;
-     }
+    if (document.getElementById('departmentlh').value == '') {
+        department = document.getElementById('departmentl').innerHTML;
+    }
+    else {
+        department = document.getElementById('departmentlh').value;
+    }
 
-    for(let i=0;i<employee.length;i++){
-        if(employee[i].id==opid){
-            employee[i].fname=fname;
-            employee[i].lname=lname;
-            employee[i].pname=fname+" "+lname;
-            employee[i].mail=mail;
-            employee[i].jobtitle=jobtitle;
-            employee[i].office=office;
-            employee[i].department=department;
-            employee[i].phonenumber=phonenumber;
+    if (document.getElementById('phonenumberlh').value == '') {
+        phonenumber = document.getElementById('phonenumberl').innerHTML;
+    }
+    else {
+        phonenumber = document.getElementById('phonenumberlh').value;
+    }
+
+    for (let i = 0; i < employee.length; i++) {
+        if (employee[i].id == opid) {
+            employee[i].fname = fname;
+            employee[i].lname = lname;
+            employee[i].pname = fname + " " + lname;
+            employee[i].mail = mail;
+            employee[i].jobtitle = jobtitle;
+            employee[i].office = office;
+            employee[i].department = department;
+            employee[i].phonenumber = phonenumber;
         }
     }
 
-    dnameval1=document.getElementById(department).innerHTML[1]-'0';
-    document.getElementById(department).innerHTML="("+(dnameval1+1)+")";
+    dnameval1 = document.getElementById(department).innerHTML[1] - '0';
+    document.getElementById(department).innerHTML = "(" + (dnameval1 + 1) + ")";
 
-    onameval1=document.getElementById(office).innerHTML[1]-'0';
-    document.getElementById(office).innerHTML="("+(onameval1+1)+")";
+    onameval1 = document.getElementById(office).innerHTML[1] - '0';
+    document.getElementById(office).innerHTML = "(" + (onameval1 + 1) + ")";
 
-    jnameval1=document.getElementById(jobtitle).innerHTML[1]-'0';
-    document.getElementById(jobtitle).innerHTML="("+(jnameval1+1)+")";
+    jnameval1 = document.getElementById(jobtitle).innerHTML[1] - '0';
+    document.getElementById(jobtitle).innerHTML = "(" + (jnameval1 + 1) + ")";
 
     xclose();
     filter(true);
