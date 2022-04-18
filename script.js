@@ -80,25 +80,52 @@ function filter(pass) {
         for (let i = 0; i < t.length; i++) temp.push(t[i]);
     }
 
+    console.log(temp);
+
     t = new Array();
+    var f = true;
     if (selectedPrefix != undefined && pass == true) {
+        f = false;
         for (let i = 0; i < temp.length; i++) {
-            for (let j = 0; j < parent.length; j++) {
-                if (temp[i] == parent[j]) t.push(temp[i]);
+            for (let j = 0; j < employee.length; j++) {
+                if (temp[i] == employee[j].id) {
+                    if (field == 'firstname') {
+                        if ((employee[j].fname).startsWith(selectedPrefix)) t.push(temp[i]);
+                    }
+                    else if (field == 'lastname') {
+                        if ((employee[j].lname).startsWith(selectedPrefix)) t.push(temp[i]);
+                    }
+                }
             }
         }
         temp = new Array();
         for (let i = 0; i < t.length; i++) temp.push(t[i]);
     }
 
+    console.log(temp);
     parent = new Array();
     if ((deptarray.length == 1 && deptarray[0].check == true) || (offarray.length == 1 && offarray[0].check == true) || (jtarray.length == 1 && jtarray[0].check == true)) temp = new Array();
 
-    if (deptarray.length + offarray.length + jtarray.length == 0) {
-        for (let i = 0; i < employee.length; i++) {
-            console.log(employee[i].id);
-            show(employee[i].id);
-            parent.push(employee[i].id);
+    if ((deptarray.length + offarray.length + jtarray.length == 0)) {
+        if (f == true) {
+            for (let i = 0; i < employee.length; i++) {
+                show(employee[i].id);
+                parent.push(employee[i].id);
+            }
+        }
+        else{
+            for(let i=0;i<employee.length;i++){
+                if(field=='firstname'){
+                    if ((employee[i].fname).startsWith(selectedPrefix)) {
+                        show(employee[i].id);
+                    }
+                }
+                else if(field=='lastname'){
+                    if ((employee[i].lname).startsWith(selectedPrefix)){
+                        show(employee[i].id);
+                    }
+                }
+            }
         }
     }
     else {
@@ -247,7 +274,7 @@ function showDepartment() {
         // const head=departmentDiv.getElementsByTagName('h3');
         const parent = document.createElement('p');
         parent.style.display = 'inline';
-        parent.style.cursor="pointer";
+        parent.style.cursor = "pointer";
         parent.setAttribute("id", deptCollection[i] + "P");
         const textnode = document.createTextNode(deptCollection[i]);
         parent.appendChild(textnode);
@@ -274,7 +301,7 @@ function showOffice() {
         // const head=departmentDiv.getElementsByTagName('h3');
         const parent = document.createElement('p');
         parent.style.display = 'inline';
-        parent.style.cursor="pointer";
+        parent.style.cursor = "pointer";
         parent.setAttribute("id", officeCollection[i] + "P");
         const textnode = document.createTextNode(officeCollection[i]);
         parent.appendChild(textnode);
@@ -299,7 +326,7 @@ function showJobTitle() {
         // const head=departmentDiv.getElementsByTagName('h3');
         const parent = document.createElement('p');
         parent.style.display = 'inline';
-        parent.style.cursor="pointer";
+        parent.style.cursor = "pointer";
         parent.setAttribute("id", jobtitleCollection[i] + "P");
         const textnode = document.createTextNode(jobtitleCollection[i]);
         parent.appendChild(textnode);
@@ -540,7 +567,7 @@ function countSet(flag) {
         var departmentDiv = document.querySelector('.department');
         const parent = document.createElement('p');
         parent.style.display = 'inline';
-        parent.style.cursor="pointer";
+        parent.style.cursor = "pointer";
         parent.setAttribute("id", department + "P");
         const textnode = document.createTextNode(department);
         parent.appendChild(textnode);
@@ -572,7 +599,7 @@ function countSet(flag) {
         var officeDiv = document.querySelector('.offices');
         const parent = document.createElement('p');
         parent.style.display = 'inline';
-        parent.style.cursor="pointer";
+        parent.style.cursor = "pointer";
         parent.setAttribute("id", office + "P");
         const textnode = document.createTextNode(office);
         parent.appendChild(textnode);
@@ -604,7 +631,7 @@ function countSet(flag) {
 
         const parent = document.createElement('p');
         parent.style.display = 'inline';
-        parent.style.cursor="pointer";
+        parent.style.cursor = "pointer";
         parent.setAttribute("id", jobtitle + "P");
         const textnode = document.createTextNode(jobtitle);
         parent.appendChild(textnode);
@@ -652,8 +679,9 @@ function vis(id, otherid) {
 
 }
 
+let field;
 function filterByPrefix(prefix, id) {
-    let field = document.getElementById('filter').value;
+    field = document.getElementById('filter').value;
     if (selectedPrefix == undefined) {
         filter(true);
         document.getElementById(id).style.backgroundColor = "red";
@@ -833,8 +861,8 @@ function updatea() {
         lname = document.getElementById('namelasth').value;
     }
 
-    if (document.getElementById('maill').value == '') {
-        mail = document.getElementById('maillh').innerHTML;
+    if (document.getElementById('maillh').value == '') {
+        mail = document.getElementById('maill').innerHTML;
     }
     else {
         mail = document.getElementById('maillh').value;
