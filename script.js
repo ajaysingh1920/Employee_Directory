@@ -247,6 +247,7 @@ function showDepartment() {
         // const head=departmentDiv.getElementsByTagName('h3');
         const parent = document.createElement('p');
         parent.style.display = 'inline';
+        parent.style.cursor="pointer";
         parent.setAttribute("id", deptCollection[i] + "P");
         const textnode = document.createTextNode(deptCollection[i]);
         parent.appendChild(textnode);
@@ -273,6 +274,7 @@ function showOffice() {
         // const head=departmentDiv.getElementsByTagName('h3');
         const parent = document.createElement('p');
         parent.style.display = 'inline';
+        parent.style.cursor="pointer";
         parent.setAttribute("id", officeCollection[i] + "P");
         const textnode = document.createTextNode(officeCollection[i]);
         parent.appendChild(textnode);
@@ -297,6 +299,7 @@ function showJobTitle() {
         // const head=departmentDiv.getElementsByTagName('h3');
         const parent = document.createElement('p');
         parent.style.display = 'inline';
+        parent.style.cursor="pointer";
         parent.setAttribute("id", jobtitleCollection[i] + "P");
         const textnode = document.createTextNode(jobtitleCollection[i]);
         parent.appendChild(textnode);
@@ -308,18 +311,21 @@ function showJobTitle() {
         span.appendChild(spantextnode);
 
         const br = document.createElement('br');
+        br.setAttribute("id", jobtitleCollection[i] + "b");
 
         if (i >= 3) {
-            parent.style.visibility = "hidden";
-            span.style.visibility = "hidden";
-            br.style.visibility = "hidden";
+            parent.style.display = "none";
+            span.style.display = "none";
+            br.style.display = "none";
         }
 
         jobtitlesDiv.appendChild(parent);
         jobtitlesDiv.appendChild(span);
         jobtitlesDiv.appendChild(br);
     }
-    const para = document.createElement('p');
+    const para = document.createElement('a');
+    para.style.cursor = 'pointer';
+    para.style.color = '#00b1fc';
     // para.addEventListener('onclick',change());
     para.setAttribute('id', 'vmore');
     para.setAttribute('onclick', 'change()');
@@ -530,9 +536,11 @@ function countSet(flag) {
         }
     }
     if (chk == true) {
+        deptCollection.push(department);
         var departmentDiv = document.querySelector('.department');
         const parent = document.createElement('p');
         parent.style.display = 'inline';
+        parent.style.cursor="pointer";
         parent.setAttribute("id", department + "P");
         const textnode = document.createTextNode(department);
         parent.appendChild(textnode);
@@ -560,9 +568,11 @@ function countSet(flag) {
         }
     }
     if (chk == true) {
+        officeCollection.push(office);
         var officeDiv = document.querySelector('.offices');
         const parent = document.createElement('p');
         parent.style.display = 'inline';
+        parent.style.cursor="pointer";
         parent.setAttribute("id", office + "P");
         const textnode = document.createTextNode(office);
         parent.appendChild(textnode);
@@ -578,6 +588,7 @@ function countSet(flag) {
         officeDiv.appendChild(span);
         officeDiv.appendChild(br);
     }
+    chk = true;
     for (let i = 0; i < jobtitleCollection.length; i++) {
         if (jobtitleCollection[i] == jobtitle) {
             chk = false;
@@ -585,6 +596,45 @@ function countSet(flag) {
             if (flag) number.innerHTML = "(" + (number.innerHTML[1] - '0' + 1) + ")";
             else number.innerHTML = "(" + (number.innerHTML[1] - '0' - 1) + ")";
         }
+    }
+    if (chk == true) {
+        jobtitleCollection.push(jobtitle)
+        var jobtitlesDiv = document.querySelector('.jobtitles');
+        jobtitlesDiv.removeChild(document.getElementById('vmore'));
+
+        const parent = document.createElement('p');
+        parent.style.display = 'inline';
+        parent.style.cursor="pointer";
+        parent.setAttribute("id", jobtitle + "P");
+        const textnode = document.createTextNode(jobtitle);
+        parent.appendChild(textnode);
+
+        const span = document.createElement('span');
+        const spantextnode = document.createTextNode('(1)');
+        span.style.display = 'inline';
+        span.setAttribute("id", jobtitle);
+        span.appendChild(spantextnode);
+
+        const br = document.createElement('br');
+        br.setAttribute("id", jobtitle + "b");
+
+        parent.style.display = "none";
+        span.style.display = "none";
+        br.style.display = "none";
+
+        jobtitlesDiv.appendChild(parent);
+        jobtitlesDiv.appendChild(span);
+        jobtitlesDiv.appendChild(br);
+
+        const para = document.createElement('a');
+        para.style.cursor = 'pointer';
+        para.style.color = '#00b1fc';
+        // para.addEventListener('onclick',change());
+        para.setAttribute('id', 'vmore');
+        para.setAttribute('onclick', 'change()');
+        const tnode = document.createTextNode("View More");
+        para.appendChild(tnode);
+        jobtitlesDiv.appendChild(para);
     }
 }
 
@@ -661,35 +711,29 @@ function cler() {
 
 function change() {
     var text = document.getElementById('vmore');
+    var vmore = document.getElementById('vmore');
     if (text.innerText == "View More") {
-        var vmore = document.getElementById('vmore');
-        vmore.style.top = "0px";
-        vmore.innerHTML = "view less";
-        var ele = document.getElementsByClassName('jobtitles');
-        var p = ele[0].getElementsByTagName('p');
-        p[3].style.visibility = "visible";
-        p[4].style.visibility = "visible";
-
-        var a = ele[0].getElementsByTagName('span');
-        a[3].style.visibility = "visible";
-        a[4].style.visibility = "visible";
+        for (let i = 3; i < jobtitleCollection.length; i++) {
+            let p = document.getElementById(jobtitleCollection[i] + "P");
+            let spn = document.getElementById(jobtitleCollection[i]);
+            let a = document.getElementById(jobtitleCollection[i] + "b");
+            p.style.display = "inline";
+            spn.style.display = "inline";
+            a.style.display = "inline";
+        }
+        vmore.innerHTML = "View Less";
     }
     else {
-        var vmore = document.getElementById('vmore');
-        vmore.style.top = "-40px";
+        for (let i = 3; i < jobtitleCollection.length; i++) {
+            let p = document.getElementById(jobtitleCollection[i] + "P");
+            let spn = document.getElementById(jobtitleCollection[i]);
+            let a = document.getElementById(jobtitleCollection[i] + "b");
+            p.style.display = "none";
+            spn.style.display = "none";
+            a.style.display = "none";
+        }
         vmore.innerHTML = "View More";
-        var ele = document.getElementsByClassName('jobtitles');
-        var p = ele[0].getElementsByTagName('p');
-        p[3].style.visibility = "hidden";
-        p[4].style.visibility = "hidden";
-
-        var a = ele[0].getElementsByTagName('span');
-        a[3].style.visibility = "hidden";
-        a[4].style.visibility = "hidden";
     }
-
-
-
 }
 
 let opid;
