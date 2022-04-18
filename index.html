@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Directory</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+</head>
+
+<body onload="renderJS()">
+    <div class="navbar">
+        <div id="logo">
+            <img src="saketa_logo.png" alt="">
+            <!-- <img src="directory_logo.png" alt=""> -->
+        </div>
+        <div class="heading">
+            <h1>Employee Directory</h1>
+            <p>The Ultimate People Directory Experience</p>
+        </div>
+        <div class="side">
+            <h2 id="welcome">Welcome,</h2>
+            <p id="andrew">Andrew Philips</p>
+            <img src="Andrew_Pic.jpg" alt="">
+        </div>
+    </div>
+    <div class="middle">
+        <div class="left">
+            <div class="department">
+                <h3>Departments</h3>
+                <!-- <p style="display: inline-block" onclick="filter('Departments','IT Department')">IT</p><span>(0)</span><br>
+                <p style="display: inline-block" onclick="filter('Departments','Human Resources Department')">Human Resources</p><span>(0)</span><br>
+                <p style="display: inline-block" onclick="filter('Departments','MD Department')">Md</p><span>(0)</span><br>
+                <p style="display: inline-block" onclick="filter('Departments','Sales Department')">Sales</p><span>(0)</span><br>
+                <p style="display: inline-block" onclick="filter('Departments','PE Department')"> PE</p><span>(0)</span> -->
+            </div>
+            <div class="offices">
+                <h3>Offices</h3>
+                <!-- <p style="display: inline-block;" onclick="filter('Offices','Seattle')">Seattle</p><span>(0)</span><br>
+                <p style="display: inline-block;" onclick="filter('Offices','India')">India</p><span>(0)</span><br> -->
+            </div>
+            <div class="jobtitles">
+                <h3>Job-Titles</h3>
+                <!-- <p style="display: inline-block;" onclick="filter('JobTitles','SharePoint Practice Head')">SharePoint Practice Head</p><span>(0)</span> <br>
+                <p style="display: inline-block;" onclick="filter('JobTitles','.Net Development Lead')">.Net Development Lead</p><span>(0)</span> <br>
+                <p style="display: inline-block;" onclick="filter('JobTitles','Recruiting Expert')">Recruiting Expert</p><span>(0)</span> <br>
+                <p style="display: inline-block; visibility: hidden;" onclick="filter('JobTitles','BI Developer')">BI Developler</p><span style="visibility: hidden;">(0)</span> <br>
+                <p style="display: inline-block; visibility: hidden;" onclick="filter('JobTitles','Businees Analyst')">Businees Analyst</p><span style="visibility: hidden;">(0)</span> <br> -->
+                <!-- <p id="vmore" onclick="change();">View More</p> -->
+            </div>
+        </div>
+        <div class="main">
+            <div class="top">
+                <div class="alphabet">
+                    <button id="icon" onclick="showAll()"><img src="top_person.png" alt="#"></button>
+                    <button id="id-1" onclick="filterByPrefix('a','id-1')">A</button>
+                    <button id="id-2" onclick="filterByPrefix('b','id-2')">B</button>
+                    <button id="id-3" onclick="filterByPrefix('c','id-3')">C</button>
+                    <button id="id-4" onclick="filterByPrefix('d','id-4')">D</button>
+                    <button id="id-5" onclick="filterByPrefix('e','id-5')">E</button>
+                    <button id="id-6" onclick="filterByPrefix('f','id-6')">F</button>
+                    <button id="id-7" onclick="filterByPrefix('g','id-7')">G</button>
+                    <button id="id-8" onclick="filterByPrefix('h','id-8')">H</button>
+                    <button id="id-9" onclick="filterByPrefix('i','id-9')">I</button>
+                    <button id="id-10" onclick="filterByPrefix('j','id-10')">J</button>
+                    <button id="id-11" onclick="filterByPrefix('k','id-11')">K</button>
+                    <button id="id-12" onclick="filterByPrefix('l','id-12')">L</button>
+                    <button id="id-13" onclick="filterByPrefix('m','id-13')">M</button>
+                    <button id="id-14" onclick="filterByPrefix('n','id-14')">N</button>
+                    <button id="id-15" onclick="filterByPrefix('o','id-15')">O</button>
+                    <button id="id-16" onclick="filterByPrefix('p','id-16')">P</button>
+                    <button id="id-17" onclick="filterByPrefix('q','id-17')">Q</button>
+                    <button id="id-18" onclick="filterByPrefix('r','id-18')">R</button>
+                    <button id="id-19" onclick="filterByPrefix('s','id-19')">S</button>
+                    <button id="id-20" onclick="filterByPrefix('t','id-20')">T</button>
+                    <button id="id-21" onclick="filterByPrefix('u','id-21')">U</button>
+                    <button id="id-22" onclick="filterByPrefix('v','id-22')">V</button>
+                    <button id="id-23" onclick="filterByPrefix('w','id-23')">W</button>
+                    <button id="id-24" onclick="filterByPrefix('x','id-24')">X</button>
+                    <button id="id-25" onclick="filterByPrefix('y','id-25')">Y</button>
+                    <button id="id-26" onclick="filterByPrefix('z','id-26')">Z</button>
+                </div>
+                <div class="topmain">
+                    <div1 class="first">
+                        <label>Search</label>
+                        <input id="prefsearch" type="text" placeholder="🔍 Enter any Keyword" oninput="filterBySearch()">
+                    </div1>
+                    <div class="second">
+                        <button id="clear" onclick="cler()">Clear</button>
+                    </div>
+                    <div class="third">
+                        <label for="">Filter by</label>
+                        <select id="filter">
+                            <option value="">Filter Employees By--</option>
+                            <option value="firstname" selected>First Name</option>
+                            <option value="lastname">Last Name</option>
+                            <!-- <option value="preferredname">Preferred Name</option> -->
+                            <!-- <option value="email">Email</option>
+                            <option value="department">Department</option>
+                            <option value="office">Office</option>
+                            <option value="jobtitle">Job-Title</option> -->
+                        </select>
+                        <span id="filtererror"></span>
+                    </div>
+                    <button id="btn" onclick="fn1()">Add
+                        Employees</button>
+                </div>
+                <div class="note">
+                    <label for="">Note:</label>
+                    <p>Please use the advanced filter options to refine your results</p>
+                </div>
+            </div>
+            <div class="bottborder">
+                <div id="bottom">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bg-model">
+        <div class="model-content">
+            <button id="close" onclick="fn2()">X</button>
+            <div class="form">
+                <form action="#" onsubmit="onFormSubmit();event.preventDefault();" name="myform" autocomplete="off">
+                    <div class="formdesign">
+                        <label style="display: block;">First Name*</label>
+                        <input type="text" name="firstname" placeholder="First Name" id="firstname">
+                        <span class="formerror"></span>
+                    </div>
+                    <div class="formdesign">
+                        <label style="display: block;">LastName*</label>
+                        <input type="text" name="lastname" placeholder="Last Name" id="lastname" required>
+                        <span class="formerror"></span>
+                    </div>
+                    <div class="formdesign">
+                        <label style="display: block;">E-mail:</label>
+                        <input type="email" name="mail" placeholder="E-mail" id="mail" required>
+                        <span class="formerror"></span>
+                    </div>
+                    <div class="formdesign">
+                        <label style="display: block;">Job-Title:</label>
+                        <select id="jobtitle" onchange="vis('jobtitle','jobtitleother')" required>
+                            <option value="">Please choose an jobtitle--</option>
+                            <option value="SharePoint Practice Head">SharePoint Practice Head</option>
+                            <option value=".Net Development Lead">.Net Development Lead</option>
+                            <option value="Recruiting Expert">Recruiting Expert</option>
+                            <option value="BI Developer">BI Developler</option>
+                            <option value="Business Analyst">Businees Analyst</option>
+                            <option value="Other" >Other
+                                <input id="jobtitleother" style="display: none;" type="text" placeholder="Please specify the job title">
+                            </option>
+                        </select>
+                        <span class="formerror"></span>
+                    </div>
+                    <div class="formdesign">
+                        <label style="display: block;">Office:</label>
+                        <select id="office" onchange="vis('office','officeother')" required>
+                            <option value="">Please choose an Office location--</option>
+                            <option value="Seattle">Seattle</option>
+                            <option value="India">India</option>
+                            <option value="Other">Other
+                                <input id="officeother" style="display: none;" type="text" placeholder="Please specify the office location">
+                            </option>
+                        </select>
+                        <span class="formerror"></span>
+                    </div>
+                    <div class="formdesign">
+                        <label style="display: block;" >Select Department:</label>
+                        <select id="department" onchange="vis('department','departmentother')" required>
+                            <option value="">Please choose an Department--</option>
+                            <option value="IT">IT</option>
+                            <option value="Human Resources">Human Resources</option>
+                            <option value="MD">MD</option>
+                            <option value="Sales">Sales</option>
+                            <option value="Other">Other
+                                <input id="departmentother" style="display: none;" type="text" placeholder="Please specify the department">
+                            </option>
+                        </select>
+                        <span class="formerror"></span>
+                    </div>
+                    <div class="formdesign">
+                        <label style="display: block;">Phone Number:</label>
+                        <input type="phone" name="phonenumber" placeholder="Phone Number" id="phonenumber" required>
+                        <span class="formerror"></span>
+                    </div>
+                    <div class="formdesign">
+                        <input type="submit" value="Submit" id="submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="other">
+            
+        </div>
+    </div>
+
+    <div class="popup">
+        <div class="eu">
+            <div class="field">
+                First Name:
+                <textarea readonly name="" id="namefirst" cols="20" rows="1"></textarea>
+                <input type="text" class="hbtn" id="namefirsth">
+                <button onclick="edit('#namefirst','#namefirsth')">Edit</button>
+            </div>
+            <div class="field">
+                Last Name:
+                <textarea readonly name="" id="namelast" cols="20" rows="1"></textarea>
+                <input type="text" class="hbtn" id="namelasth">
+                <button onclick="edit('#namelast','#namelasth')">Edit</button>
+            </div>
+            <div class="field">
+                E-mail:
+                <textarea readonly name="" id="maill" cols="20" rows="1"></textarea>
+                <input type="text" class="hbtn" id="maillh">
+                <button onclick="edit('#maill','#maillh')">Edit</button>
+            </div>
+            <div class="field">
+                Job-title:
+                <textarea readonly name="" id="jobtitlel" cols="20" rows="1"></textarea>
+                <select class="hbtn" id="jobtitlelh" required>
+                    <option value="">Please choose an jobtitle--</option>
+                    <option value="SharePoint Practice Head">SharePoint Practice Head</option>
+                    <option value=".Net Development Lead">.Net Development Lead</option>
+                    <option value="Recruiting Expert">Recruiting Expert</option>
+                    <option value="BI Developer">BI Developler</option>
+                    <option value="Business Analyst">Businees Analyst</option>
+                    <option value="Other" >Other
+                        <input id="jobtitleotherl" style="display: none;" type="text" placeholder="Please specify the job title">
+                    </option>
+                </select>
+                <button onclick="edit('#jobtitlel','#jobtitlelh')">Edit</button>
+            </div>
+            <div class="field">
+                Office:
+                <textarea readonly name="" id="officel" cols="20" rows="1"></textarea>
+                <select id="officelh" class="hbtn" required>
+                    <option value="">Please choose an Office location--</option>
+                    <option value="Seattle">Seattle</option>
+                    <option value="India">India</option>
+                    <option value="Other">Other
+                        <input id="officeotherl" style="display: none;" type="text" placeholder="Please specify the office location">
+                    </option>
+                </select>
+                <button onclick="edit('#officel','#officelh')">Edit</button>
+            </div>
+            <div class="field">
+                Department:
+                <textarea readonly name="" id="departmentl" cols="20" rows="1"></textarea>
+                <select id="departmentlh" class="hbtn" required>
+                    <option value="">Please choose an Department--</option>
+                    <option value="IT">IT</option>
+                    <option value="Human Resources">Human Resources</option>
+                    <option value="MD">MD</option>
+                    <option value="Sales">Sales</option>
+                    <option value="Other">Other
+                        <input id="departmentotherl" style="display: none;" type="text" placeholder="Please specify the department">
+                    </option>
+                </select>
+                <button onclick="edit('#departmentl','#departmentlh')">Edit</button>
+            </div>
+            <div class="field">
+                PhoneNumber:
+                <textarea readonly name="" id="phonenumberl" cols="20" rows="1"></textarea>
+                <input type="text" class="hbtn" id="phonenumberlh">
+                <button onclick="edit('#phonenumberl','#phonenumberlh')">Edit</button>
+            </div>
+            <div class="lower">
+                <button id="update" onclick="updatea()">Update</button>
+                <button id="delete" onclick="remove()">Delete</button>
+            </div>
+            <div class="xclose" onclick="xclose()">X</div>
+        </div>
+    </div>
+</body>
+
+</html>
