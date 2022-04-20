@@ -152,6 +152,7 @@ button:hover{
     color: rgba(0, 174, 255, 0.685);
     position: relative;
     top: 10px;
+    left: 1px;
 }
 .side #andrew{
     font-size: 30px;
@@ -159,7 +160,7 @@ button:hover{
     opacity: .8;
     position: relative;
     top: 10px;
-    left: 5px;
+    left: 9px;
 }
 .side img{
     height: 60px;
@@ -237,11 +238,9 @@ button:hover{
 }
 .alphabet{
     margin-top: 20px;
-    margin-left: 1px;
-    margin-right: 0px;
     width: 1040px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     /* background-color: red; */
 }
 .top .alphabet button{
@@ -249,11 +248,11 @@ button:hover{
     color: white;
     font-size: 15px;
     font-weight: bold;
-    margin: 1px;
+    margin: 0px;
     border: none;
-    padding: 8px;
-    padding-left: 11px;
-    padding-right: 11px;
+    height: 38px;
+    padding-left: 13px;
+    padding-right: 13px;
     cursor: pointer;
 }
 .alphabet button:hover{
@@ -263,7 +262,8 @@ button:hover{
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 3px;
+    width: 35px;
+    height: 38px;
 }
 .topmain{
     display: flex;
