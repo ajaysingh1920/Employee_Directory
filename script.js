@@ -81,9 +81,9 @@ function filter(pass) {
     }
 
     console.log(temp);
-
     t = new Array();
     var f = true;
+    console.log(selectedPrefix);
     if (selectedPrefix != undefined && pass == true) {
         f = false;
         for (let i = 0; i < temp.length; i++) {
@@ -103,6 +103,7 @@ function filter(pass) {
     }
 
     console.log(temp);
+
     parent = new Array();
     if ((deptarray.length == 1 && deptarray[0].check == true) || (offarray.length == 1 && offarray[0].check == true) || (jtarray.length == 1 && jtarray[0].check == true)) temp = new Array();
 
@@ -113,15 +114,15 @@ function filter(pass) {
                 parent.push(employee[i].id);
             }
         }
-        else{
-            for(let i=0;i<employee.length;i++){
-                if(field=='firstname'){
+        else {
+            for (let i = 0; i < employee.length; i++) {
+                if (field == 'firstname') {
                     if ((employee[i].fname).startsWith(selectedPrefix)) {
                         show(employee[i].id);
                     }
                 }
-                else if(field=='lastname'){
-                    if ((employee[i].lname).startsWith(selectedPrefix)){
+                else if (field == 'lastname') {
+                    if ((employee[i].lname).startsWith(selectedPrefix)) {
                         show(employee[i].id);
                     }
                 }
@@ -198,9 +199,9 @@ function renderJS() {
     countSet(true);
     let inner2 = {
         "id": ++id,
-        "fname": "dfsfsd",
-        "lname": "fassaf",
-        "pname": "dfsfsd fassaf",
+        "fname": "fsdasd",
+        "lname": "fdassa",
+        "pname": "fsdasd fdassa",
         "mail": "ajayss@gmail.com",
         "jobtitle": "SharePoint Practice Head",
         "office": "India",
@@ -215,8 +216,8 @@ function renderJS() {
     let inner3 = {
         "id": ++id,
         "fname": "dfsfsd",
-        "lname": "fassaf",
-        "pname": "dfsfsd fassaf",
+        "lname": "ajdfjd",
+        "pname": "dfsfsd ajdfjd",
         "mail": "ajaysss@gmail.com",
         "jobtitle": ".Net Development Lead",
         "office": "Seattle",
@@ -230,9 +231,9 @@ function renderJS() {
     countSet(true);
     let inner4 = {
         "id": ++id,
-        "fname": "dfsfsd",
-        "lname": "fassaf",
-        "pname": "dfsfsd fassaf",
+        "fname": "dfdsa",
+        "lname": "hedjdjd",
+        "pname": "dfdsa hedjdjd",
         "mail": "ajayssss@gmail.com",
         "jobtitle": ".Net Development Lead",
         "office": "Seattle",
@@ -246,9 +247,9 @@ function renderJS() {
     countSet(true);
     let inner5 = {
         "id": ++id,
-        "fname": "dfsfsd",
-        "lname": "fassaf",
-        "pname": "dfsfsd fassaf",
+        "fname": "dfafas",
+        "lname": "sfddasfa",
+        "pname": "dfafas sfddasfa",
         "mail": "ajaysssss@gmail.com",
         "jobtitle": "Recruiting Expert",
         "office": "India",
@@ -681,9 +682,15 @@ function vis(id, otherid) {
 
 let field;
 function filterByPrefix(prefix, id) {
+    if (document.getElementById('prefsearch').value != '') {
+        document.getElementById('prefsearch').value = "";
+        selectedPrefix = undefined;
+        selectedId = undefined;
+    }
+
     field = document.getElementById('filter').value;
-    if (selectedPrefix == undefined) {
-        filter(true);
+    if (selectedPrefix == undefined || selectedPrefix == '') {
+        filter(false);
         document.getElementById(id).style.backgroundColor = "red";
         selectedPrefix = prefix;
         selectedId = id;
@@ -704,7 +711,6 @@ function filterByPrefix(prefix, id) {
             selectedId = id;
         }
     }
-
     clearError();
     var parents = document.getElementById('bottom');
     var child = parents.getElementsByTagName('div');
@@ -717,10 +723,10 @@ function filterByPrefix(prefix, id) {
     for (let i = 0; i < parent.length; i++) {
         for (let j = 0; j < employee.length; j++) {
             if (field == "firstname") {
-                if (employee[j].id == parent[i] && (employee[j].fname).startsWith(prefix)) temp.push(employee[j].id);
+                if (employee[j].id == parent[i] && (employee[j].fname).startsWith(selectedPrefix)) temp.push(employee[j].id);
             }
             else if (field == "lastname") {
-                if (employee[j].id == parent[i] && (employee[j].lname).startsWith(prefix)) temp.push(employee[j].id);
+                if (employee[j].id == parent[i] && (employee[j].lname).startsWith(selectedPrefix)) temp.push(employee[j].id);
             }
         }
     }
@@ -732,7 +738,6 @@ function filterByPrefix(prefix, id) {
 }
 
 function cler() {
-    // alert("r");
     document.querySelector('#prefsearch').value = "";
     showAll();
 }
@@ -920,4 +925,64 @@ function updatea() {
 
     xclose();
     filter(true);
+}
+
+function filterBySearch() {
+    if (selectedPrefix != undefined && selectedId != undefined) {
+        document.getElementById(selectedId).style.background = "#00b1fc";
+        selectedPrefix = undefined;
+        selectedId = undefined;
+    }
+
+    filter(false);
+    selectedPrefix = document.getElementById('prefsearch').value;
+    field = document.getElementById('filter').value;
+    clearError();
+    var parents = document.getElementById('bottom');
+    var child = parents.getElementsByTagName('div');
+    var size = child.length;
+    while (size-- > 0) {
+        parents.removeChild(child[0]);
+    }
+
+    var temp = new Array();
+    for (let i = 0; i < parent.length; i++) {
+        for (let j = 0; j < employee.length; j++) {
+            if (field == "firstname") {
+                if (employee[j].id == parent[i] && (employee[j].fname).startsWith(selectedPrefix)) temp.push(employee[j].id);
+            }
+            else if (field == "lastname") {
+                if (employee[j].id == parent[i] && (employee[j].lname).startsWith(selectedPrefix)) temp.push(employee[j].id);
+            }
+        }
+    }
+    for (let i = 0; i < temp.length; i++) show(temp[i]);
+
+    parent = new Array();
+    for (let i = 0; i < temp.length; i++) parent.push(temp[i]);
+}
+
+function showAll(){
+    if(filterMap.get('department').length==1){
+        document.getElementById((filterMap.get('department')[0].tar.innerHTML)+'P').style.fontWeight='normal';
+        filterMap.set('department',new Array());
+    }
+
+    if(filterMap.get('office').length==1){
+        document.getElementById((filterMap.get('office')[0].tar.innerHTML)+'P').style.fontWeight='normal';
+        filterMap.set('office',new Array());
+    }
+    
+    if(filterMap.get('jobtitle').length==1){
+        document.getElementById((filterMap.get('jobtitle')[0].tar.innerHTML)+'P').style.fontWeight='normal';
+        filterMap.set('jobtitle',new Array());
+    }
+    if(selectedPrefix!=undefined && selectedId!=undefined){
+        document.getElementById(selectedId).style.background = "#00b1fc";
+        selectedPrefix = undefined;
+        selectedId = undefined;
+    }
+    document.querySelector('#prefsearch').value = "";
+    selectedPrefix=undefined;
+    filter(false);
 }
