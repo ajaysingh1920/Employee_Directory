@@ -285,13 +285,16 @@ function showDepartment() {
         span.setAttribute("id", deptCollection[i]);
         span.style.display = 'inline';
         span.appendChild(spantextnode);
-
-        const spann = document.createElement('span');
-
+        
         const br = document.createElement('br');
-        departmentDiv.appendChild(parent);
-        departmentDiv.appendChild(span);
-        departmentDiv.appendChild(br);
+
+        const div=document.createElement('div');
+        div.appendChild(parent);
+        div.appendChild(span);
+        div.appendChild(br);
+        div.style.paddingTop='4px';
+        
+        departmentDiv.appendChild(div);
     }
 }
 
@@ -314,9 +317,14 @@ function showOffice() {
         span.appendChild(spantextnode);
 
         const br = document.createElement('br');
-        officeDiv.appendChild(parent);
-        officeDiv.appendChild(span);
-        officeDiv.appendChild(br);
+
+        const div=document.createElement('div');
+        div.appendChild(parent);
+        div.appendChild(span);
+        div.appendChild(br);
+        div.style.paddingTop='4px';
+
+        officeDiv.appendChild(div);
     }
 }
 
@@ -347,9 +355,12 @@ function showJobTitle() {
             br.style.display = "none";
         }
 
-        jobtitlesDiv.appendChild(parent);
-        jobtitlesDiv.appendChild(span);
-        jobtitlesDiv.appendChild(br);
+        const div=document.createElement('div');
+        div.appendChild(parent);
+        div.appendChild(span);
+        div.appendChild(br);
+        div.style.paddingTop='4px';  
+        jobtitlesDiv.appendChild(div);  
     }
     const para = document.createElement('a');
     para.style.cursor = 'pointer';
@@ -400,7 +411,7 @@ function show(id) {
 
     const phoneIcon = new Image(20, 20);
     phoneIcon.src = 'phone_icon.png';
-    phoneIcon.style.marginLeft = "3px";
+    phoneIcon.style.marginLeft = "6px";
     const mailIcon = new Image(20, 20);
     mailIcon.src = 'mail_icon.png';
     mailIcon.style.marginLeft = "3px";
@@ -430,11 +441,12 @@ function show(id) {
     // div.style.flex="2 0 21%";
     div.style.backgroundColor = "#e9e8e8";
     // div.style.display = "inlineBlock";
-    div.style.width = "244px";
+    div.style.width = "243px";
     // div.style.height="100px";
     div.style.padding = "8px";
-    div.style.marginRight = "8px";
+    div.style.marginRight = "9px";
     div.style.marginBottom = "8px";
+    div.style.marginTop='7px';
     // div.alignIterm="center";
     div.appendChild(img);
     div.appendChild(mdiv);
@@ -582,9 +594,15 @@ function countSet(flag) {
         const spann = document.createElement('span');
 
         const br = document.createElement('br');
-        departmentDiv.appendChild(parent);
-        departmentDiv.appendChild(span);
-        departmentDiv.appendChild(br);
+        
+        
+        const div=document.createElement('div');
+        div.appendChild(parent);
+        div.appendChild(span);
+        div.appendChild(br);
+        div.style.paddingTop='4px'; 
+
+        departmentDiv.appendChild(div);
     }
     chk = true;
     for (let i = 0; i < officeCollection.length; i++) {
@@ -612,9 +630,15 @@ function countSet(flag) {
         span.appendChild(spantextnode);
 
         const br = document.createElement('br');
-        officeDiv.appendChild(parent);
-        officeDiv.appendChild(span);
-        officeDiv.appendChild(br);
+
+        
+        const div=document.createElement('div');
+        div.appendChild(parent);
+        div.appendChild(span);
+        div.appendChild(br);
+        div.style.paddingTop='4px'; 
+
+        officeDiv.appendChild(div);
     }
     chk = true;
     for (let i = 0; i < jobtitleCollection.length; i++) {
@@ -650,9 +674,13 @@ function countSet(flag) {
         span.style.display = "none";
         br.style.display = "none";
 
-        jobtitlesDiv.appendChild(parent);
-        jobtitlesDiv.appendChild(span);
-        jobtitlesDiv.appendChild(br);
+        
+        const div=document.createElement('div');
+        div.appendChild(parent);
+        div.appendChild(span);
+        div.appendChild(br);
+        div.style.paddingTop='4px'; 
+        jobtitlesDiv.appendChild(div);
 
         const para = document.createElement('a');
         para.style.cursor = 'pointer';
@@ -936,7 +964,7 @@ function filterBySearch() {
 
     filter(false);
     selectedPrefix = document.getElementById('prefsearch').value;
-    field = document.getElementById('filter').value;
+    let field = document.getElementById('filter').value;
     clearError();
     var parents = document.getElementById('bottom');
     var child = parents.getElementsByTagName('div');
