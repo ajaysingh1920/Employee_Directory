@@ -864,7 +864,7 @@ function remove() {
     xclose();
     countSet(false);
     employee.splice(idx, 1);
-    filter();
+    filter(true);
 }
 
 function updatea() {
